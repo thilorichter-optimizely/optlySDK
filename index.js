@@ -4,27 +4,29 @@ const fetch = require('isomorphic-fetch');
 
 class Optimizely{
   constructor(config){
-      console.log("v1.1");
+      console.log("v1.3");
       this.config = config;
+
       // Set cookie if in browser
       if (typeof window !== 'undefined') {
-          this.config.cookie.split(";").map(function(str){
-            let name = str.split("=")[0];
-            let value = str.split("=")[1];
 
-            this.log(name);
-            this.log(value);
+        function setCookie(cname, cvalue, exdays) {
+          var d = new Date();
+          d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+          var expires = "expires="+d.toUTCString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
 
-            this.setCookie(name, value, 1);
-          });
+        this.config.cookie.split(";").map(function(str){
+          let name = str.split("=")[0];
+          let value = str.split("=")[1];
+
+          console.log(name);
+          console.log(value);
+
+          setCookie(name, value, 1);
+        });
       }
-  }
-
-  setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
   log(msg, level = 2) {
