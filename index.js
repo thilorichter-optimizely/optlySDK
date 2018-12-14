@@ -5,7 +5,7 @@ const fetch = require('isomorphic-fetch');
 class Optimizely{
   constructor(config){
       this.config = config;
-
+      this.log("v1.0");
       // Set cookie if in browser
       if (typeof window !== 'undefined') {
           this.config.cookie.split(";").map(function(str){

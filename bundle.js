@@ -6,11 +6,26 @@ const fetch = require('isomorphic-fetch');
 class Optimizely{
   constructor(config){
       this.config = config;
-
+      this.log("v1.0");
       // Set cookie if in browser
       if (typeof window !== 'undefined') {
-          document.cookie = this.config.cookie;
+          this.config.cookie.split(";").map(function(str){
+            let name = str.split("=")[0];
+            let value = str.split("=")[1];
+
+            this.log(name);
+            this.log(value);
+
+            this.setCookie(name, value, 1);
+          });
       }
+  }
+
+  setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
   log(msg, level = 2) {
