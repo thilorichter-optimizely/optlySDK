@@ -1,4 +1,4 @@
 node_modules
 web
-package-lock.json
-main.js
+/package-lock.json
+/main.js
