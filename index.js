@@ -31,8 +31,8 @@ class Optimizely{
         method: method,
         headers: {
           'Content-Type': 'application/json',
-          'cookie': this.config.cookie,
-          'X-CSRFToken': this.config.csrfToken
+          'cookie': this.config.TeamsCookie,
+          'X-CSRFToken': this.config.TeamsCsrfToken
         }
       });
     } else {
@@ -41,8 +41,8 @@ class Optimizely{
         body: body,
         headers: {
           'Content-Type': 'application/json',
-          'Cookie': this.config.cookie,
-          'X-CSRFToken': this.config.csrfToken,
+          'Cookie': this.config.TeamsCookie,
+          'X-CSRFToken': this.config.TeamsCsrfToken,
           'Referer': referer
         }
       });
@@ -77,8 +77,8 @@ class Optimizely{
         method: method,
         headers: {
           'Content-Type': 'application/json',
-          'cookie': this.config.cookie,
-          'X-csrf-token': this.config.csrfToken
+          'cookie': this.config.AppCookie,
+          'X-csrf-token': this.config.AppCsrfToken
         }
       });
     } else {
@@ -87,8 +87,8 @@ class Optimizely{
         body: body,
         headers: {
           'Content-Type': 'application/json',
-          'Cookie': this.config.cookie,
-          'X-csrf-token': this.config.csrfToken,
+          'Cookie': this.config.AppCookie,
+          'X-csrf-token': this.config.AppCsrfToken,
           'Referer': referer
         }
       });
@@ -131,7 +131,7 @@ class Optimizely{
    */
   async getActiveProjects(){
     this.log("Getting Active Projects ...");
-    let res = await this.callApp("/projects?filter=project_status:Active", "GET");
+    let res = await this.callApp("projects?filter=project_status:Active", "GET");
 
     return res;
   }
