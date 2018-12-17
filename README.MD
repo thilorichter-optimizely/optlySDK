@@ -23,7 +23,7 @@ Log into Optimizely app. Then go to program management. Go to network tab and fi
 
 5. Initialize with config template below
 
-```
+```javascript
 var optly = new Optimizely({
     logLevel: 5, // currently not functional. Just ignore
     accountId: , // AccountID of the account you want to interact with
